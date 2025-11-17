@@ -43,7 +43,7 @@ Para obter os dados dos heróis, utilizei a **Akabab's SuperHero API**, que forn
 
 Você pode acessar e testar a versão ao vivo do projeto através do link abaixo, hospedado no GitHub Pages:
 
-**>> CLIQUE AQUI PARA ACESSAR O PROJETO <<**
+**>> [CLIQUE AQUI PARA ACESSAR O PROJETO](https://gustavofelicianobritto.github.io/HeroDex---HTML-JS-Vue-Vuetify/) <<**
 
 ---
 

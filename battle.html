@@ -23,7 +23,11 @@
         <v-theme-provider class="pa-10">
             <div class="masterContainer ">
                 <v-app>
-                    <v-app-bar title="Nordex Universe" >
+                    <v-app-bar>
+                        <v-app-bar-title >
+                            <h2 class="titulo-customizado">Nordex Universe</h2>
+                        </v-app-bar-title>
+                        
                         <v-btn text href="battle.html" class="menuBotao">
                             Batalha
                         </v-btn>
@@ -81,7 +85,7 @@
                                 <v-row justify="center" class="mt-4">
                                     <v-col cols="2">
 
-                                        <v-btn @click="newBattle" color="success" block>
+                                        <v-btn @click="newBattle" color="success" class="novaBatalha" block>
                                             Nova Batalha
                                         </v-btn>
                                     </v-col>
@@ -106,7 +110,7 @@
                                 <v-row justify="center" class="mt-4">
                                     <v-col cols="2">
 
-                                        <v-btn @click="newBattle" color="success" block>
+                                        <v-btn @click="newBattle" color="success" class="novaBatalha" block>
                                             Nova Batalha
                                         </v-btn>
                                     </v-col>
@@ -159,7 +163,7 @@
                                 <v-row justify="center" class="mt-4">
                                     <v-col cols="2">
 
-                                        <v-btn @click="newBattle" color="success" block>
+                                        <v-btn @click="newBattle" color="success" class="novaBatalha" block >
                                             Nova Batalha
                                         </v-btn>
                                     </v-col>

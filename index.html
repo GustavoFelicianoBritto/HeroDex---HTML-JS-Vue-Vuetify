@@ -23,7 +23,11 @@
         <v-theme-provider class="pa-10">
             <div class="masterContainer">
                 <v-app>
-                    <v-app-bar title="Nordex Universe" >
+                    <v-app-bar>
+                        <v-app-bar-title >
+                            <h2 class="titulo-customizado">Nordex Universe</h2>
+                        </v-app-bar-title>
+                        
                         <v-btn text href="battle.html" class="menuBotao">
                             Batalha
                         </v-btn>
@@ -40,14 +44,14 @@
                             <v-row v-else>
 
                                 <v-col v-for="tempHero in heroList" :key="tempHero.id" cols="12" sm="4"
-                                class="d-flex justify-center">
-                                <v-card height="100%" min-width="300px" class="cardBanner" 
-                                style="background: transparent !important;" >
+                                    class="d-flex justify-center">
+                                    <v-card height="100%" min-width="300px" class="cardBanner"
+                                        style="background: transparent !important;">
 
                                         <v-row>
                                             <v-col cols="12" class="d-flex justify-center">
                                                 <v-img :src="tempHero.images.md" :alt="tempHero.name" contain
-                                                    max-height="300px" ></v-img>
+                                                    max-height="300px"></v-img>
                                             </v-col>
                                         </v-row>
 
@@ -78,70 +82,71 @@
 
 
 
-                            <v-dialog v-model="dialog" max-width="600px" >
+                            <v-dialog v-model="dialog" max-width="600px">
 
-                                    <v-card v-if="selectedHero"  class="dialogBackground">
-                                        <v-card-actions>
-                                            <v-spacer></v-spacer>
-                                            <v-btn color="red" @click="dialog = false">
-                                                X
-                                            </v-btn>
-                                        </v-card-actions>
+                                <v-card v-if="selectedHero" class="dialogBackground">
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn color="red" @click="dialog = false">
+                                            X
+                                        </v-btn>
+                                    </v-card-actions>
 
-                                        <v-img :src="selectedHero.images.md" height="400px" class="mt-3"></v-img>
+                                    <v-img :src="selectedHero.images.md" height="400px" class="mt-3"></v-img>
 
-                                        <v-card-title class="text-h5 text-center mt-3">
-                                            {{ selectedHero.name }}
-                                        </v-card-title>
-                                        <v-card-subtitle class="text-center">
-                                            {{ selectedHero.biography.publisher }}
-                                        </v-card-subtitle>
+                                    <v-card-title class="text-h5 text-center mt-3">
+                                        {{ selectedHero.name }}
+                                    </v-card-title>
+                                    <v-card-subtitle class="text-center">
+                                        {{ selectedHero.biography.publisher }}
+                                    </v-card-subtitle>
 
-                                        <v-card-text>
+                                    <v-card-text>
 
-                                            <p><strong>Nome:</strong> {{ selectedHero.biography.fullName }}</p>
-                                            
-                                            <p><strong>Descrição:</strong> {{ selectedHero.biography.description }}</p>
-                                            
-                                            <p><strong>Alter ego:</strong> {{ selectedHero.biography.alterEgos }}</p>
-                                            <p><strong>Gênero:</strong> {{ selectedHero.appearance.gender }}</p>
-                                            <p><strong>Emprego:</strong> {{ selectedHero.work.occupation }}</p>
+                                        <p><strong>Nome:</strong> {{ selectedHero.biography.fullName }}</p>
 
-                                            <p><strong>Espécie:</strong> {{ selectedHero.appearance.race }}</p>
-                                            <p><strong>Conexões:</strong> {{ selectedHero.connections.relatives }}</p>
-                                            <p><strong>Grupo:</strong> {{ selectedHero.connections.groupAffiliation }}
-                                            </p>
-                                            <p><strong>Base:</strong> {{ selectedHero.work.base }}</p>
+                                        <p><strong>Descrição:</strong> {{ selectedHero.biography.description }}</p>
+                                        <v-divider class="my-3"></v-divider>
 
-                                            <v-divider class="my-3"></v-divider>
-                                            <p class="text-h6">Atributos:</p>
-                                            <p><strong>Inteligência:</strong> {{ selectedHero.powerstats.intelligence }}
-                                            </p>
-                                            <p><strong>Força:</strong> {{ selectedHero.powerstats.strength }}</p>
-                                            <p><strong>Velocidade:</strong> {{ selectedHero.powerstats.speed }}</p>
-                                            <p><strong>Durabilidade:</strong> {{ selectedHero.powerstats.durability }}
-                                            </p>
-                                            <p><strong>Poder:</strong> {{ selectedHero.powerstats.power }}</p>
-                                            <p><strong>Combate:</strong> {{ selectedHero.powerstats.combat }}</p>
+                                        <p><strong>Alter ego:</strong> {{ selectedHero.biography.alterEgos }}</p>
+                                        <p><strong>Gênero:</strong> {{ selectedHero.appearance.gender }}</p>
+                                        <p><strong>Emprego:</strong> {{ selectedHero.work.occupation }}</p>
 
+                                        <p><strong>Espécie:</strong> {{ selectedHero.appearance.race }}</p>
+                                        <p><strong>Conexões:</strong> {{ selectedHero.connections.relatives }}</p>
+                                        <p><strong>Grupo:</strong> {{ selectedHero.connections.groupAffiliation }}
+                                        </p>
+                                        <p><strong>Base:</strong> {{ selectedHero.work.base }}</p>
 
-                                            <v-divider class="my-3"></v-divider>
-                                            <p class="text-h6">Aparência:</p>
-                                            <p><strong>Gênero:</strong> {{ selectedHero.appearance.gender }}</p>
-                                            <p><strong>Raça:</strong> {{ selectedHero.appearance.race || 'Desconhecido'
-                                                }}
-                                            </p>
-
-                                            <p><strong>Altura:</strong> {{ selectedHero.appearance.height.join(' / ') }}
-                                            </p>
-                                            <p><strong>Peso:</strong> {{ selectedHero.appearance.weight.join(' / ') }}
-                                            </p>
-                                        </v-card-text>
+                                        <v-divider class="my-3"></v-divider>
+                                        <p class="text-h6">Atributos:</p>
+                                        <p><strong>Inteligência:</strong> {{ selectedHero.powerstats.intelligence }}
+                                        </p>
+                                        <p><strong>Força:</strong> {{ selectedHero.powerstats.strength }}</p>
+                                        <p><strong>Velocidade:</strong> {{ selectedHero.powerstats.speed }}</p>
+                                        <p><strong>Durabilidade:</strong> {{ selectedHero.powerstats.durability }}
+                                        </p>
+                                        <p><strong>Poder:</strong> {{ selectedHero.powerstats.power }}</p>
+                                        <p><strong>Combate:</strong> {{ selectedHero.powerstats.combat }}</p>
 
 
+                                        <v-divider class="my-3"></v-divider>
+                                        <p class="text-h6">Aparência:</p>
+                                        <p><strong>Gênero:</strong> {{ selectedHero.appearance.gender }}</p>
+                                        <p><strong>Raça:</strong> {{ selectedHero.appearance.race || 'Desconhecido'
+                                            }}
+                                        </p>
 
-                                    </v-card>
-                                
+                                        <p><strong>Altura:</strong> {{ selectedHero.appearance.height.join(' / ') }}
+                                        </p>
+                                        <p><strong>Peso:</strong> {{ selectedHero.appearance.weight.join(' / ') }}
+                                        </p>
+                                    </v-card-text>
+
+
+
+                                </v-card>
+
                             </v-dialog>
 
 

@@ -1,6 +1,20 @@
 const { createApp, ref, onMounted } = Vue;
 const { createVuetify } = Vuetify;
-const vuetify = createVuetify();
+const vuetify = createVuetify({
+
+    theme: {
+            defaultTheme: 'dark',
+            themes: {
+                dark: {
+                    colors: {
+                        
+                        background: 'transparent',
+                        
+                    },
+                },
+            },
+        },
+    });
 
 
 
@@ -15,9 +29,9 @@ const app = createApp({
         const dialog = ref(false);
         const selectedHero = ref(null);
 
-        
-        
-        
+
+
+
 
         const fetchHeroes = async () => {
 
@@ -47,6 +61,8 @@ const app = createApp({
 
             fetchHeroes();
 
+
+
         });
 
 
@@ -55,7 +71,7 @@ const app = createApp({
             dialog.value = true;
         }
 
-        
+
 
 
 
@@ -67,7 +83,7 @@ const app = createApp({
             selectedHero,
             dialog,
             verdetalhes,
-            
+
 
 
         }

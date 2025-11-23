@@ -4,40 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroDex Battle</title>
+    <title>Nordex Universe Battle</title>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.10.11/dist/vuetify.min.css" />
+
+    <link rel="stylesheet" href="components/style/basic.css">
+
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.10.11/dist/vuetify.min.js" defer></script>
+
     <script src="battle.js" defer></script>
 </head>
 
 <body>
 
-    <div id="battleApp">
-        <v-theme-provider class="pa-10" theme="dark" with-background>
-            <div class="masterContainer">
-
-
-
+    <div id="app">
+        <v-theme-provider class="pa-10">
+            <div class="masterContainer ">
                 <v-app>
-
-                    <v-app-bar title="Application bar">
-                        <v-btn text href="battle.html">
+                    <v-app-bar title="Nordex Universe" >
+                        <v-btn text href="battle.html" class="menuBotao">
                             Batalha
                         </v-btn>
-                        <v-btn text href="index.html">
+                        <v-btn text href="index.html" class="menuBotao">
                             Index
                         </v-btn>
-
                     </v-app-bar>
 
-                    <v-main class="text-center">
-
+                    <v-main class="align-center text-center">
                         <h1>HeroDex Battle Page</h1>
-
-
+                        
                         <v-container v-if="isLoading" class="text-center">
                             <h1>Carregando oponentes...</h1>
                         </v-container>
@@ -47,17 +44,17 @@
 
                             <div v-if="!battleOver">
                                 <v-row class="align-center justify-center">
-                                    <h2>Quem vence a batalha?</h2>
+                                    <h2 class="mt-5">Quem vence a batalha?</h2>
                                 </v-row>
 
 
-                                <v-row justify="center" align="stretch">
+                                <v-row justify="center" class="align= stretch">
                                     <v-col cols="12" sm="3" v-for="hero in choosenHeroes" :key="hero.id">
-                                        <v-card outlined height="100%" min-width="200px" class="ma-2 pa-2">
+                                        <v-card height="100%" min-width="200px" class="cardBanner" style="background: transparent !important;">
                                             <v-row>
                                                 <v-col cols="12" class="d-flex justify-center">
                                                     <v-img :src="hero.images.md" :alt="hero.name" contain
-                                                        max-height="300px" href="#"></v-img>
+                                                        max-height="300px"></v-img>
                                                 </v-col>
                                             </v-row>
 
@@ -69,7 +66,7 @@
                                             </v-card-subtitle>
 
 
-                                            <v-btn @click="escolher(hero)" color="primary" class="ma-2" block>
+                                            <v-btn @click="escolher(hero)" color="primary" block>
                                                 Escolher
                                             </v-btn>
 
@@ -82,7 +79,7 @@
                                 </v-row>
 
                                 <v-row justify="center" class="mt-4">
-                                    <v-col cols="4">
+                                    <v-col cols="2">
 
                                         <v-btn @click="newBattle" color="success" block>
                                             Nova Batalha
@@ -94,10 +91,20 @@
 
 
                             <div v-else>
-                                <h2 class="text-h4">{{ battleResult }}</h2>
+                                <v-card style="background: transparent !important;" flat>
+                                    <v-tex>
+                                        <h2 class="text-h4">
+                                            {{ battleResult }}
+                                        </h2>
+                                        <h3>
+                                            {{pontuacao}}
+                                        </h3>
+                                    </v-tex>
+                                </v-card>
+
 
                                 <v-row justify="center" class="mt-4">
-                                    <v-col cols="4">
+                                    <v-col cols="2">
 
                                         <v-btn @click="newBattle" color="success" block>
                                             Nova Batalha
@@ -108,7 +115,8 @@
                                 <v-row class="mt-4 mb-4 justify-center align-center">
                                     <v-col cols="12" sm="3" v-for="hero in choosenHeroes" :key="hero.id">
 
-                                        <v-card outlined height="30%" min-width="200px" min-height="1500px" class="ma-2 pa-2"
+                                        <v-card outlined height="30%" min-width="200px" min-height="1500px"
+                                            class="ma-2 pa-2"
                                             :color="battleWinner && battleWinner.id === hero.id ? 'green-lighten-4' : 'red-lighten-4'">
 
                                             <v-img :src="hero.images.md" :alt="hero.name"></v-img>
@@ -149,7 +157,7 @@
                                 </v-row>
 
                                 <v-row justify="center" class="mt-4">
-                                    <v-col cols="4">
+                                    <v-col cols="2">
 
                                         <v-btn @click="newBattle" color="success" block>
                                             Nova Batalha

@@ -1,6 +1,20 @@
 const { createApp, ref, onMounted } = Vue;
 const { createVuetify } = Vuetify;
-const vuetify = createVuetify();
+const vuetify = createVuetify({
+
+    theme: {
+            defaultTheme: 'dark',
+            themes: {
+                dark: {
+                    colors: {
+                        
+                        background: 'transparent',
+                        
+                    },
+                },
+            },
+        },
+    });
 
 const app = createApp({
     setup() {
@@ -12,6 +26,8 @@ const app = createApp({
         const battleResult = ref(null); 
         const battleWinner = ref(null);
         const battleOver = ref(false); 
+
+        const pontuacao= ref('')
 
         
 
@@ -75,19 +91,43 @@ const app = createApp({
             const chosenPower = calculatePower(chosenHero);
             const opponentPower = calculatePower(opponentHero);
 
+            const powerDiference = Math.abs(chosenPower - opponentPower);
+            const powerSum = chosenPower + opponentPower;
+
+            const delta = powerSum === 0 ? 0 : powerDiference / powerSum;
+
+            const rewardPoint = Math.round(100 * (1 - delta));
+
+            
 
 
             
             let actualWinner;
 
+            const currentPoints = parseInt(localStorage.getItem('points') || '0');
+
             if (chosenPower > opponentPower) {
                 actualWinner = chosenHero;
+
+
+                
+                localStorage.setItem('points', currentPoints + rewardPoint);
+
+                
+
+
             } else if (opponentPower > chosenPower) {
                 actualWinner = opponentHero;
+
+                localStorage.setItem('points', 0);
+
+                
+
             } else {
                 
                 battleResult.value = `EMPATE! Ambos têm ${chosenPower} de poder total.`;
                 battleOver.value = true;
+                
                 return; 
             }
 
@@ -101,7 +141,7 @@ const app = createApp({
                 battleWinner.value = actualWinner;
             }
             
-            
+            pontuacao.value= `Sua pontuação: ${localStorage.getItem('points')}`
             battleOver.value = true;
         };
 
@@ -115,10 +155,11 @@ const app = createApp({
             battleOver,
             newBattle,
             battleWinner,
+            pontuacao
             
         }
     }
 });
 
 app.use(vuetify);
-app.mount('#battleApp');
+app.mount('#app');

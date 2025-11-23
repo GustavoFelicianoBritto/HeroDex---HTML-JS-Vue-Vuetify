@@ -4,58 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroDex Index</title>
+    <title>Nordex Universe Index</title>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.10.11/dist/vuetify.min.css" />
-    <link rel="stylesheet" href="index.css" />
+
+    <link rel="stylesheet" href="components/style/basic.css" />
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.10.11/dist/vuetify.min.js" defer></script>
 
 
     <script src="app.js" defer></script>
-
-
-
-
-
 </head>
 
 <body>
 
     <div id="app">
-        <v-theme-provider class="pa-10" theme="dark" with-background>
+        <v-theme-provider class="pa-10">
             <div class="masterContainer">
-
                 <v-app>
-
-                    <v-app-bar title="Application bar">
-                        <v-btn text href="battle.html">
+                    <v-app-bar title="Nordex Universe" >
+                        <v-btn text href="battle.html" class="menuBotao">
                             Batalha
                         </v-btn>
-                        <v-btn text href="index.html">
+                        <v-btn text href="index.html" class="menuBotao">
                             Index
                         </v-btn>
-
-
                     </v-app-bar>
 
-
                     <v-main class="d-flex align-center justify-center">
+
+                        <h1 v-if="isLoading">Buscando dados...</h1>
+
                         <v-container>
-
-                            <h1 v-if="isLoading">Buscando dados...</h1>
-
                             <v-row v-else>
 
-                                <v-col v-for="tempHero in heroList" :key="tempHero.id" cols="12" sm="3"
-                                    class="d-flex justify-center">
+                                <v-col v-for="tempHero in heroList" :key="tempHero.id" cols="12" sm="4"
+                                class="d-flex justify-center">
+                                <v-card height="100%" min-width="300px" class="cardBanner" 
+                                style="background: transparent !important;" >
 
-                                    <v-card outlined height="100%" min-width="200px">
                                         <v-row>
                                             <v-col cols="12" class="d-flex justify-center">
                                                 <v-img :src="tempHero.images.md" :alt="tempHero.name" contain
-                                                    max-height="300px" href="#"></v-img>
+                                                    max-height="300px" ></v-img>
                                             </v-col>
                                         </v-row>
 
@@ -86,10 +78,9 @@
 
 
 
-                            <v-dialog v-model="dialog" max-width="600px" min-height="1500px">
+                            <v-dialog v-model="dialog" max-width="600px" >
 
-                                <v-theme-provider class="pa-10" theme="dark" with-background>
-                                    <v-card v-if="selectedHero">
+                                    <v-card v-if="selectedHero"  class="dialogBackground">
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="red" @click="dialog = false">
@@ -109,9 +100,9 @@
                                         <v-card-text>
 
                                             <p><strong>Nome:</strong> {{ selectedHero.biography.fullName }}</p>
-                                            <v-divider class="my-3"></v-divider>
+                                            
                                             <p><strong>Descrição:</strong> {{ selectedHero.biography.description }}</p>
-                                            <v-divider class="my-3"></v-divider>
+                                            
                                             <p><strong>Alter ego:</strong> {{ selectedHero.biography.alterEgos }}</p>
                                             <p><strong>Gênero:</strong> {{ selectedHero.appearance.gender }}</p>
                                             <p><strong>Emprego:</strong> {{ selectedHero.work.occupation }}</p>
@@ -150,7 +141,7 @@
 
 
                                     </v-card>
-                                </v-theme-provider>
+                                
                             </v-dialog>
 
 

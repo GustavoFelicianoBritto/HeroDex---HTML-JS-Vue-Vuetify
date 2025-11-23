@@ -69,7 +69,7 @@
                                             </v-card-subtitle>
 
 
-                                            <v-btn @click="escolher(hero)" color="primary" class="ma-2" block >
+                                            <v-btn @click="escolher(hero)" color="primary" class="ma-2" block>
                                                 Escolher
                                             </v-btn>
 
@@ -108,10 +108,10 @@
                                 <v-row class="mt-4 mb-4 justify-center align-center">
                                     <v-col cols="12" sm="3" v-for="hero in choosenHeroes" :key="hero.id">
 
-                                        <v-card outlined height="30%" min-width="200px" class="ma-2 pa-2"
+                                        <v-card outlined height="30%" min-width="200px" min-height="1500px" class="ma-2 pa-2"
                                             :color="battleWinner && battleWinner.id === hero.id ? 'green-lighten-4' : 'red-lighten-4'">
 
-                                            <v-img :src="hero.images.lg" :alt="hero.name"></v-img>
+                                            <v-img :src="hero.images.md" :alt="hero.name"></v-img>
                                             <v-card-title>{{ hero.name }}</v-card-title>
                                             <v-card-subtitle>{{ hero.biography.publisher }}</v-card-subtitle>
                                             <v-card-text class="text-left">
@@ -122,6 +122,9 @@
                                                     ||
                                                     'Desconhecido' }}</p>
 
+                                                <v-divider class="my-3"></v-divider>
+
+                                                <p><strong>Descrição:</strong> {{ hero.biography.description }}</p>
                                                 <v-divider class="my-3"></v-divider>
                                                 <p class="text-h6">Atributos:</p>
                                                 <p><strong>Inteligência:</strong> {{ hero.powerstats.intelligence }}</p>
@@ -156,7 +159,7 @@
 
                             </div>
 
-                            
+
 
                         </v-container>
                     </v-main>

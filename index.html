@@ -36,7 +36,7 @@
                         <v-btn text href="index.html">
                             Index
                         </v-btn>
-                        
+
 
                     </v-app-bar>
 
@@ -86,7 +86,7 @@
 
 
 
-                            <v-dialog v-model="dialog" max-width="600px">
+                            <v-dialog v-model="dialog" max-width="600px" min-height="1500px">
 
                                 <v-theme-provider class="pa-10" theme="dark" with-background>
                                     <v-card v-if="selectedHero">
@@ -97,7 +97,7 @@
                                             </v-btn>
                                         </v-card-actions>
 
-                                        <v-img :src="selectedHero.images.lg" height="400px" class="mt-3"></v-img>
+                                        <v-img :src="selectedHero.images.md" height="400px" class="mt-3"></v-img>
 
                                         <v-card-title class="text-h5 text-center mt-3">
                                             {{ selectedHero.name }}
@@ -109,6 +109,9 @@
                                         <v-card-text>
 
                                             <p><strong>Nome:</strong> {{ selectedHero.biography.fullName }}</p>
+                                            <v-divider class="my-3"></v-divider>
+                                            <p><strong>Descrição:</strong> {{ selectedHero.biography.description }}</p>
+                                            <v-divider class="my-3"></v-divider>
                                             <p><strong>Alter ego:</strong> {{ selectedHero.biography.alterEgos }}</p>
                                             <p><strong>Gênero:</strong> {{ selectedHero.appearance.gender }}</p>
                                             <p><strong>Emprego:</strong> {{ selectedHero.work.occupation }}</p>

@@ -18,7 +18,7 @@ const app = createApp({
         const fetchHeroes = async () => {
             isLoading.value = true;
             try {
-                const response = await fetch('https://cdn.jsdelivr.net/gh/GustavoFelicianoBritto/NordexMultiversoDP@main/api/all.json');
+                const response = await fetch('https://cdn.jsdelivr.net/gh/GustavoFelicianoBritto/NordexMultiversoDP@v1.0.2/api/all.json');
                 const data = await response.json();
                 heroList.value = data; 
 

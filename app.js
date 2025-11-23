@@ -1,7 +1,9 @@
-
 const { createApp, ref, onMounted } = Vue;
 const { createVuetify } = Vuetify;
 const vuetify = createVuetify();
+
+
+
 
 const app = createApp({
 
@@ -13,6 +15,9 @@ const app = createApp({
         const dialog = ref(false);
         const selectedHero = ref(null);
 
+        
+        
+        
 
         const fetchHeroes = async () => {
 
@@ -20,7 +25,7 @@ const app = createApp({
 
             try {
 
-                const response = await fetch('https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json');
+                const response = await fetch('https://cdn.jsdelivr.net/gh/GustavoFelicianoBritto/NordexMultiversoDP@main/api/all.json');
 
                 const data = await response.json();
 
@@ -49,6 +54,8 @@ const app = createApp({
             dialog.value = true;
         }
 
+        
+
 
 
 
@@ -58,7 +65,9 @@ const app = createApp({
 
             selectedHero,
             dialog,
-            verdetalhes
+            verdetalhes,
+            
+
 
         }
 

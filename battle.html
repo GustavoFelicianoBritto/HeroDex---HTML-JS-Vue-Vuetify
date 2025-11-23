@@ -16,143 +16,155 @@
 <body>
 
     <div id="battleApp">
-        <v-app>
-            <v-main class="text-center">
+        <v-theme-provider class="pa-10" theme="dark" with-background>
+            <div class="masterContainer">
 
-                <div class="text-center mb-4 mt-5">
-                        <v-btn href="index.html" color="secondary">
+
+
+                <v-app>
+
+                    <v-app-bar title="Application bar">
+                        <v-btn text href="battle.html">
+                            Batalha
+                        </v-btn>
+                        <v-btn text href="index.html">
                             Index
                         </v-btn>
-                    </div>
 
-                <h1>HeroDex Battle Page</h1>
+                    </v-app-bar>
 
+                    <v-main class="text-center">
 
-                <v-container v-if="isLoading" class="text-center">
-                    <h1>Carregando oponentes...</h1>
-                </v-container>
+                        <h1>HeroDex Battle Page</h1>
 
 
-                <v-container v-else class="text-center">
-
-                    <div v-if="!battleOver">
-                        <v-row class="align-center justify-center">
-                            <h2>Quem vence a batalha?</h2>
-                        </v-row>
+                        <v-container v-if="isLoading" class="text-center">
+                            <h1>Carregando oponentes...</h1>
+                        </v-container>
 
 
-                        <v-row justify="center" align="stretch">
-                            <v-col cols="12" sm="3" v-for="hero in choosenHeroes" :key="hero.id">
-                                <v-card outlined height="100%" min-width="200px" class="ma-2 pa-2">
-                                    <v-row>
-                                        <v-col cols="12" class="d-flex justify-center">
-                                            <v-img :src="hero.images.md" :alt="hero.name" contain max-height="300px"
-                                                href="#"></v-img>
-                                        </v-col>
-                                    </v-row>
+                        <v-container v-else class="text-center">
 
-                                    <v-card-title class="text-h6 text-center">
-                                        {{ hero.name }}
-                                    </v-card-title>
-                                    <v-card-subtitle class="text-center">
-                                        {{ hero.biography.publisher }}
-                                    </v-card-subtitle>
+                            <div v-if="!battleOver">
+                                <v-row class="align-center justify-center">
+                                    <h2>Quem vence a batalha?</h2>
+                                </v-row>
 
 
-                                    <v-btn @click="escolher(hero)" color="primary" class="ma-2" block>
-                                        Escolher
-                                    </v-btn>
-                                    
+                                <v-row justify="center" align="stretch">
+                                    <v-col cols="12" sm="3" v-for="hero in choosenHeroes" :key="hero.id">
+                                        <v-card outlined height="100%" min-width="200px" class="ma-2 pa-2">
+                                            <v-row>
+                                                <v-col cols="12" class="d-flex justify-center">
+                                                    <v-img :src="hero.images.md" :alt="hero.name" contain
+                                                        max-height="300px" href="#"></v-img>
+                                                </v-col>
+                                            </v-row>
 
-                                    
-                                </v-card>
-                            </v-col>
+                                            <v-card-title class="text-h6 text-center">
+                                                {{ hero.name }}
+                                            </v-card-title>
+                                            <v-card-subtitle class="text-center">
+                                                {{ hero.biography.publisher }}
+                                            </v-card-subtitle>
+
+
+                                            <v-btn @click="escolher(hero)" color="primary" class="ma-2" block >
+                                                Escolher
+                                            </v-btn>
+
+
+
+                                        </v-card>
+                                    </v-col>
+
+
+                                </v-row>
+
+                                <v-row justify="center" class="mt-4">
+                                    <v-col cols="4">
+
+                                        <v-btn @click="newBattle" color="success" block>
+                                            Nova Batalha
+                                        </v-btn>
+                                    </v-col>
+                                </v-row>
+
+                            </div>
+
+
+                            <div v-else>
+                                <h2 class="text-h4">{{ battleResult }}</h2>
+
+                                <v-row justify="center" class="mt-4">
+                                    <v-col cols="4">
+
+                                        <v-btn @click="newBattle" color="success" block>
+                                            Nova Batalha
+                                        </v-btn>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row class="mt-4 mb-4 justify-center align-center">
+                                    <v-col cols="12" sm="3" v-for="hero in choosenHeroes" :key="hero.id">
+
+                                        <v-card outlined height="30%" min-width="200px" class="ma-2 pa-2"
+                                            :color="battleWinner && battleWinner.id === hero.id ? 'green-lighten-4' : 'red-lighten-4'">
+
+                                            <v-img :src="hero.images.lg" :alt="hero.name"></v-img>
+                                            <v-card-title>{{ hero.name }}</v-card-title>
+                                            <v-card-subtitle>{{ hero.biography.publisher }}</v-card-subtitle>
+                                            <v-card-text class="text-left">
+                                                <p><strong>Nome Completo:</strong> {{ hero.biography.fullName ||
+                                                    'Desconhecido'
+                                                    }}</p>
+                                                <p><strong>Primeira Aparição:</strong> {{ hero.biography.firstAppearance
+                                                    ||
+                                                    'Desconhecido' }}</p>
+
+                                                <v-divider class="my-3"></v-divider>
+                                                <p class="text-h6">Atributos:</p>
+                                                <p><strong>Inteligência:</strong> {{ hero.powerstats.intelligence }}</p>
+                                                <p><strong>Força:</strong> {{ hero.powerstats.strength }}</p>
+                                                <p><strong>Velocidade:</strong> {{ hero.powerstats.speed }}</p>
+                                                <p><strong>Durabilidade:</strong> {{ hero.powerstats.durability }}</p>
+                                                <p><strong>Poder:</strong> {{ hero.powerstats.power }}</p>
+                                                <p><strong>Combate:</strong> {{ hero.powerstats.combat }}</p>
+
+
+                                                <v-divider class="my-3"></v-divider>
+                                                <p class="text-h6">Aparência:</p>
+                                                <p><strong>Gênero:</strong> {{ hero.appearance.gender }}</p>
+                                                <p><strong>Raça:</strong> {{ hero.appearance.race || 'Desconhecido' }}
+                                                </p>
+
+                                                <p><strong>Altura:</strong> {{ hero.appearance.height.join(' / ') }}</p>
+                                                <p><strong>Peso:</strong> {{ hero.appearance.weight.join(' / ') }}</p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row justify="center" class="mt-4">
+                                    <v-col cols="4">
+
+                                        <v-btn @click="newBattle" color="success" block>
+                                            Nova Batalha
+                                        </v-btn>
+                                    </v-col>
+                                </v-row>
+
+                            </div>
 
                             
-                        </v-row>
 
-                        <v-row justify="center" class="mt-4">
-                            <v-col cols="4">
+                        </v-container>
+                    </v-main>
+                </v-app>
 
-                                <v-btn @click="newBattle" color="success" block>
-                                    Nova Batalha
-                                </v-btn>
-                            </v-col>
-                        </v-row>
+            </div>
+        </v-theme-provider>
 
-                    </div>
-
-
-                    <div v-else>
-                        <h2 class="text-h4">{{ battleResult }}</h2>
-                        
-                        <v-row justify="center" class="mt-4">
-                            <v-col cols="4">
-
-                                <v-btn @click="newBattle" color="success" block>
-                                    Nova Batalha
-                                </v-btn>
-                            </v-col>
-                        </v-row>
-
-                        <v-row class="mt-4 mb-4 justify-center align-center">
-                            <v-col cols="12" sm="3" v-for="hero in choosenHeroes" :key="hero.id">
-
-                                <v-card 
-                                    outlined 
-                                    height="30%" 
-                                    min-width="200px" 
-                                    class="ma-2 pa-2"
-                                    :color="battleWinner && battleWinner.id === hero.id ? 'green-lighten-4' : 'red-lighten-4'"
-                                >
-
-                                    <v-img :src="hero.images.lg" :alt="hero.name"></v-img>
-                                    <v-card-title>{{ hero.name }}</v-card-title>
-                                    <v-card-subtitle>{{ hero.biography.publisher }}</v-card-subtitle>
-                                    <v-card-text class="text-left"> 
-                                        <p><strong>Nome Completo:</strong> {{ hero.biography.fullName || 'Desconhecido'
-                                            }}</p>
-                                        <p><strong>Primeira Aparição:</strong> {{ hero.biography.firstAppearance ||
-                                            'Desconhecido' }}</p>
-
-                                        <v-divider class="my-3"></v-divider>
-                                        <p class="text-h6">Atributos:</p>
-                                        <p><strong>Inteligência:</strong> {{ hero.powerstats.intelligence }}</p>
-                                        <p><strong>Força:</strong> {{ hero.powerstats.strength }}</p>
-                                        <p><strong>Velocidade:</strong> {{ hero.powerstats.speed }}</p>
-                                        <p><strong>Durabilidade:</strong> {{ hero.powerstats.durability }}</p>
-                                        <p><strong>Poder:</strong> {{ hero.powerstats.power }}</p>
-                                        <p><strong>Combate:</strong> {{ hero.powerstats.combat }}</p>
-
-
-                                        <v-divider class="my-3"></v-divider>
-                                        <p class="text-h6">Aparência:</p>
-                                        <p><strong>Gênero:</strong> {{ hero.appearance.gender }}</p>
-                                        <p><strong>Raça:</strong> {{ hero.appearance.race || 'Desconhecido' }}</p>
-
-                                        <p><strong>Altura:</strong> {{ hero.appearance.height.join(' / ') }}</p>
-                                        <p><strong>Peso:</strong> {{ hero.appearance.weight.join(' / ') }}</p>
-                                    </v-card-text>
-                                </v-card>
-                            </v-col>
-                        </v-row> 
-
-                        <v-row justify="center" class="mt-4">
-                            <v-col cols="4">
-
-                                <v-btn @click="newBattle" color="success" block>
-                                    Nova Batalha
-                                </v-btn>
-                            </v-col>
-                        </v-row>
-
-                    </div>
-
-
-
-                </v-container>
-            </v-main>
-        </v-app>
     </div>
 </body>
 

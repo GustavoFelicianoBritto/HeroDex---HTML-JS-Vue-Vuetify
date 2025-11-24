@@ -1,5 +1,6 @@
 const { createApp, ref, onMounted } = Vue;
 const { createVuetify } = Vuetify;
+
 const vuetify = createVuetify({
 
     theme: {
@@ -38,8 +39,7 @@ const app = createApp({
             isLoading.value = true;
 
             try {
-                const timestamp = new Date().getTime();
-
+                
                 const response = await fetch(`https://cdn.jsdelivr.net/gh/GustavoFelicianoBritto/NordexMultiversoDP@v1.0.2/api/all.json`);
 
                 const data = await response.json();
@@ -79,7 +79,6 @@ const app = createApp({
         return {
             heroList,
             isLoading,
-
             selectedHero,
             dialog,
             verdetalhes,

@@ -24,10 +24,10 @@
             <div class="masterContainer ">
                 <v-app>
                     <v-app-bar>
-                        <v-app-bar-title >
+                        <v-app-bar-title>
                             <h2 class="titulo-customizado">Nordex Universe</h2>
                         </v-app-bar-title>
-                        
+
                         <v-btn text href="battle.html" class="menuBotao">
                             Batalha
                         </v-btn>
@@ -38,7 +38,7 @@
 
                     <v-main class="align-center text-center">
                         <h1>HeroDex Battle Page</h1>
-                        
+
                         <v-container v-if="isLoading" class="text-center">
                             <h1>Carregando oponentes...</h1>
                         </v-container>
@@ -54,7 +54,8 @@
 
                                 <v-row justify="center" class="align= stretch">
                                     <v-col cols="12" sm="3" v-for="hero in choosenHeroes" :key="hero.id">
-                                        <v-card height="100%" min-width="200px" class="cardBanner" style="background: transparent !important;">
+                                        <v-card height="100%" min-width="200px" class="cardBanner"
+                                            style="background: transparent !important;">
                                             <v-row>
                                                 <v-col cols="12" class="d-flex justify-center">
                                                     <v-img :src="hero.images.md" :alt="hero.name" contain
@@ -96,14 +97,15 @@
 
                             <div v-else>
                                 <v-card style="background: transparent !important;" flat>
-                                    <v-tex>
+                                    <v-card-text>
                                         <h2 class="text-h4">
                                             {{ battleResult }}
                                         </h2>
                                         <h3>
                                             {{pontuacao}}
                                         </h3>
-                                    </v-tex>
+
+                                    </v-card-text>
                                 </v-card>
 
 
@@ -160,10 +162,23 @@
                                     </v-col>
                                 </v-row>
 
+                                <v-row justify="center" class="mt-4 mb-4">
+                                    <v-col cols="12" sm="6" md="4" v-if="fotogato">
+                                        <v-card class="pa-2 dialogBackground" style="background: transparent !important;" outlined>
+                                            <v-img :src="fotogato" alt="Gato aleatório do multiverso" height="300" cover
+                                                class="bg-grey-lighten-2">
+                                            </v-img>
+                                            <v-card-subtitle class="text-center mt-2">
+                                                Um gato aleatório para você.
+                                            </v-card-subtitle>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
+
                                 <v-row justify="center" class="mt-4">
                                     <v-col cols="2">
 
-                                        <v-btn @click="newBattle" color="success" class="novaBatalha" block >
+                                        <v-btn @click="newBattle" color="success" class="novaBatalha" block>
                                             Nova Batalha
                                         </v-btn>
                                     </v-col>

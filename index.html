@@ -27,6 +27,16 @@
                         <v-app-bar-title >
                             <h2 class="titulo-customizado">Nordex Universe</h2>
                         </v-app-bar-title>
+
+                        <v-text-field
+                            v-model="searchQuery"
+                            label="Buscar herói"
+                            aria-label="Buscar herói por nome"
+                            variant="outlined"
+                            density="compact"
+                            hide-details
+                            class="hero-search"
+                        ></v-text-field>
                         
                         <v-btn text href="battle.html" class="menuBotao">
                             Batalha
@@ -41,9 +51,17 @@
                         <h1 v-if="isLoading">Buscando dados...</h1>
 
                         <v-container>
-                            <v-row v-else>
+                            <v-alert
+                                v-if="!isLoading && filteredHeroes.length === 0"
+                                class="text-center"
+                                role="status"
+                            >
+                                Nenhum herói encontrado
+                            </v-alert>
 
-                                <v-col v-for="tempHero in heroList" :key="tempHero.id" cols="12" sm="4"
+                            <v-row v-else-if="!isLoading">
+
+                                <v-col v-for="tempHero in filteredHeroes" :key="tempHero.id" cols="12" sm="4"
                                     class="d-flex justify-center">
                                     <v-card height="100%" min-width="300px" class="cardBanner"
                                         style="background: transparent !important;">

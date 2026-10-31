@@ -1,4 +1,4 @@
-const { createApp, ref, onMounted } = Vue;
+const { createApp, ref, computed, onMounted } = Vue;
 const { createVuetify } = Vuetify;
 
 const vuetify = createVuetify({
@@ -26,6 +26,18 @@ const app = createApp({
 
         const heroList = ref([]);
         const isLoading = ref(false);
+        const searchQuery = ref('');
+        const filteredHeroes = computed(() => {
+            const query = searchQuery.value.trim().toLowerCase();
+
+            if (!query) {
+                return heroList.value;
+            }
+
+            return heroList.value.filter((hero) =>
+                hero.name.toLowerCase().includes(query)
+            );
+        });
 
         const dialog = ref(false);
         const selectedHero = ref(null);
@@ -78,6 +90,8 @@ const app = createApp({
 
         return {
             heroList,
+            searchQuery,
+            filteredHeroes,
             isLoading,
             selectedHero,
             dialog,
@@ -96,7 +110,6 @@ const app = createApp({
 
 app.use(vuetify);
 app.mount('#app');
-
 
 
 

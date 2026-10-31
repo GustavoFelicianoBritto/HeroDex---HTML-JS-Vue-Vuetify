@@ -4,6 +4,8 @@ Este é um projeto de estudo desenvolvido como parte do curso de **Desenvolvedor
 
 O projeto, chamado "HeroDex", consiste em uma aplicação simples que consome uma API de super-heróis, exibe uma lista deles e permite ao usuário visualizar detalhes e participar de uma advinhação de resultado de batalha baseada nos atributos de poder de dois heróis aleatórios.
 
+Na página principal, é possível buscar personagens pelo nome usando o campo de busca. A lista é filtrada conforme o texto é digitado, sem diferenciar letras maiúsculas de minúsculas, e uma mensagem é exibida quando não há heróis correspondentes.
+
 > **⚠️ Atenção:** Este projeto ainda está em sua fase inicial. O foco até o momento foi na lógica e na funcionalidade com Vue.js. Futuras atualizações incluirão melhorias significativas na estilização, adição de componentes estruturais como Header e Footer, e outras funcionalidades para uma experiência de usuário mais completa e robusta.
 
 ---
@@ -41,9 +43,9 @@ Para obter os dados dos heróis, utilizei a **Akabab's SuperHero API**, que forn
 
 ## 🚀 Testar o Projeto
 
-Você pode acessar e testar a versão ao vivo do projeto através do link abaixo, hospedado no GitHub Pages:
+Você pode acessar e testar a versão ao vivo do projeto através do link abaixo:
 
-**>> [CLIQUE AQUI PARA ACESSAR O PROJETO](https://herodexdeploy.vercel.app/) <<**
+**>> [CLIQUE AQUI PARA ACESSAR O PROJETO](https://herodex-html-js-vue-vuetify.onrender.com/) <<**
 
 ---
 

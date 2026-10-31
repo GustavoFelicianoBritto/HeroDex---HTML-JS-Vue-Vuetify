@@ -50,7 +50,7 @@ Você pode acessar e testar a versão ao vivo do projeto através do link abaixo
 ## 퓨 Próximos Passos
 
 - [ ] Adicionar um Header e um Footer à aplicação.
-- [ ] Criar um campo de busca para filtrar os heróis por nome.
+- [x] Criar um campo de busca para filtrar os heróis por nome.
 - [ ] Melhorar a responsividade e o design geral das páginas.
 - [ ] Refatorar o código para melhor organização e manutenibilidade.
 - [ ] Adicionar mais funcionalidades à página de batalha.
